@@ -8,5 +8,8 @@
 import UIKit
 
 final class SearchListViewView: CodeView {
-    
+    init() {
+        super.init(frame: .zero)
+        backgroundColor = .white
+    }
 }
