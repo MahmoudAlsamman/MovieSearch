@@ -99,11 +99,12 @@
 		D225F05326D6D2430093E50A /* MovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				D225F08C26D6D95D0093E50A /* Application */,
+				D225F08D26D6D9700093E50A /* Models */,
+				D225F08E26D6D97B0093E50A /* Screens */,
 				D225F08426D6D5EE0093E50A /* Shared */,
-				D225F05426D6D2430093E50A /* AppDelegate.swift */,
-				D225F05A26D6D2430093E50A /* Assets.xcassets */,
-				D225F05F26D6D2430093E50A /* LaunchScreen.storyboard */,
-				D225F06226D6D2430093E50A /* Info.plist */,
+				D225F09026D6D9B20093E50A /* Interfaces */,
+				D225F08F26D6D99C0093E50A /* Resources */,
 			);
 			path = MovieDB;
 			sourceTree = "<group>";
@@ -142,6 +143,45 @@
 				D225F08A26D6D6A90093E50A /* ViewSetupable.swift */,
 			);
 			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		D225F08C26D6D95D0093E50A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D225F05426D6D2430093E50A /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D225F08D26D6D9700093E50A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D225F08E26D6D97B0093E50A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D225F08F26D6D99C0093E50A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D225F05A26D6D2430093E50A /* Assets.xcassets */,
+				D225F06226D6D2430093E50A /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D225F09026D6D9B20093E50A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				D225F05F26D6D2430093E50A /* LaunchScreen.storyboard */,
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TZ6GT9JR86;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MovieDB/Info.plist;
+				INFOPLIST_FILE = MovieDB/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TZ6GT9JR86;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MovieDB/Info.plist;
+				INFOPLIST_FILE = MovieDB/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
