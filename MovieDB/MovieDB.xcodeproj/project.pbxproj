@@ -19,6 +19,8 @@
 		D225F09526D6DFAF0093E50A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09426D6DFAF0093E50A /* SearchListView.swift */; };
 		D225F09726D6DFBA0093E50A /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09626D6DFBA0093E50A /* SearchListViewController.swift */; };
 		D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09826D6DFC60093E50A /* SearchListViewModel.swift */; };
+		D225F09C26D6E47A0093E50A /* Layout+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09B26D6E47A0093E50A /* Layout+View.swift */; };
+		D225F09E26D6E5B70093E50A /* MovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09D26D6E5B70093E50A /* MovieCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		D225F09426D6DFAF0093E50A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		D225F09626D6DFBA0093E50A /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		D225F09826D6DFC60093E50A /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		D225F09B26D6E47A0093E50A /* Layout+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+View.swift"; sourceTree = "<group>"; };
+		D225F09D26D6E5B70093E50A /* MovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		D225F05326D6D2430093E50A /* MovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				D225F09A26D6E45E0093E50A /* Helpers */,
 				D225F08C26D6D95D0093E50A /* Application */,
 				D225F08D26D6D9700093E50A /* Models */,
 				D225F08E26D6D97B0093E50A /* Screens */,
@@ -200,8 +205,17 @@
 				D225F09426D6DFAF0093E50A /* SearchListView.swift */,
 				D225F09626D6DFBA0093E50A /* SearchListViewController.swift */,
 				D225F09826D6DFC60093E50A /* SearchListViewModel.swift */,
+				D225F09D26D6E5B70093E50A /* MovieCellView.swift */,
 			);
 			path = SearchList;
+			sourceTree = "<group>";
+		};
+		D225F09A26D6E45E0093E50A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D225F09B26D6E47A0093E50A /* Layout+View.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,8 +347,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D225F09C26D6E47A0093E50A /* Layout+View.swift in Sources */,
 				D225F09526D6DFAF0093E50A /* SearchListView.swift in Sources */,
 				D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */,
+				D225F09E26D6E5B70093E50A /* MovieCellView.swift in Sources */,
 				D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */,
 				D225F05526D6D2430093E50A /* AppDelegate.swift in Sources */,
 				D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */,
