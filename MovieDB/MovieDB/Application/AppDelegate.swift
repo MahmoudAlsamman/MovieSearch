@@ -11,9 +11,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private let appFactory = ApplicationFactory()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let mainViewController = appFactory.makeSearchListViewController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = mainViewController
+        window?.makeKeyAndVisible()
         return true
     }
 }

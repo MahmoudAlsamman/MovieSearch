@@ -14,3 +14,11 @@ fileprivate final class ApplicationDependencies { }
 final class ApplicationFactory {
     fileprivate let dependencies = ApplicationDependencies()
 }
+
+extension ApplicationFactory {
+    func makeSearchListViewController() -> SearchListViewController {
+        SearchListViewController(
+            viewModel: SearchListViewModel()
+        )
+    }
+}
