@@ -21,6 +21,13 @@
 		D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09826D6DFC60093E50A /* SearchListViewModel.swift */; };
 		D225F09C26D6E47A0093E50A /* Layout+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09B26D6E47A0093E50A /* Layout+View.swift */; };
 		D225F09E26D6E5B70093E50A /* MovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09D26D6E5B70093E50A /* MovieCellView.swift */; };
+		D225F0A726D6EE8E0093E50A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0A626D6EE8E0093E50A /* ApiClient.swift */; };
+		D225F0A926D6EEA50093E50A /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0A826D6EEA50093E50A /* ApiRequest.swift */; };
+		D225F0AB26D6EEB30093E50A /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0AA26D6EEB30093E50A /* ApiResponse.swift */; };
+		D225F0AE26D6EEC90093E50A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0AD26D6EEC90093E50A /* ApiError.swift */; };
+		D225F0B026D6F2DA0093E50A /* Dictionary+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0AF26D6F2DA0093E50A /* Dictionary+Helpers.swift */; };
+		D225F0B226D6F9960093E50A /* AppScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0B126D6F9960093E50A /* AppScheme.swift */; };
+		D225F0B426D6FC2A0093E50A /* SearchMovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F0B326D6FC2A0093E50A /* SearchMovieRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +68,13 @@
 		D225F09826D6DFC60093E50A /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 		D225F09B26D6E47A0093E50A /* Layout+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+View.swift"; sourceTree = "<group>"; };
 		D225F09D26D6E5B70093E50A /* MovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellView.swift; sourceTree = "<group>"; };
+		D225F0A626D6EE8E0093E50A /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		D225F0A826D6EEA50093E50A /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		D225F0AA26D6EEB30093E50A /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		D225F0AD26D6EEC90093E50A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		D225F0AF26D6F2DA0093E50A /* Dictionary+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Helpers.swift"; sourceTree = "<group>"; };
+		D225F0B126D6F9960093E50A /* AppScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScheme.swift; sourceTree = "<group>"; };
+		D225F0B326D6FC2A0093E50A /* SearchMovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +157,7 @@
 		D225F08426D6D5EE0093E50A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D225F09F26D6EDEF0093E50A /* Managers */,
 				D225F08526D6D5F50093E50A /* Base Classes */,
 			);
 			path = Shared;
@@ -163,6 +178,7 @@
 			children = (
 				D225F05426D6D2430093E50A /* AppDelegate.swift */,
 				D225F09126D6DCF50093E50A /* ApplicationFactory.swift */,
+				D225F0B126D6F9960093E50A /* AppScheme.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -214,8 +230,45 @@
 			isa = PBXGroup;
 			children = (
 				D225F09B26D6E47A0093E50A /* Layout+View.swift */,
+				D225F0AF26D6F2DA0093E50A /* Dictionary+Helpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D225F09F26D6EDEF0093E50A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D225F0A026D6EDF90093E50A /* API */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D225F0A026D6EDF90093E50A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D225F0A526D6EE5B0093E50A /* ApiServices */,
+				D225F0A326D6EE3C0093E50A /* Requests */,
+				D225F0A626D6EE8E0093E50A /* ApiClient.swift */,
+				D225F0A826D6EEA50093E50A /* ApiRequest.swift */,
+				D225F0AD26D6EEC90093E50A /* ApiError.swift */,
+				D225F0AA26D6EEB30093E50A /* ApiResponse.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D225F0A326D6EE3C0093E50A /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				D225F0B326D6FC2A0093E50A /* SearchMovieRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		D225F0A526D6EE5B0093E50A /* ApiServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ApiServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,16 +400,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D225F0B226D6F9960093E50A /* AppScheme.swift in Sources */,
+				D225F0A726D6EE8E0093E50A /* ApiClient.swift in Sources */,
 				D225F09C26D6E47A0093E50A /* Layout+View.swift in Sources */,
+				D225F0A926D6EEA50093E50A /* ApiRequest.swift in Sources */,
 				D225F09526D6DFAF0093E50A /* SearchListView.swift in Sources */,
 				D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */,
+				D225F0AB26D6EEB30093E50A /* ApiResponse.swift in Sources */,
 				D225F09E26D6E5B70093E50A /* MovieCellView.swift in Sources */,
+				D225F0AE26D6EEC90093E50A /* ApiError.swift in Sources */,
 				D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */,
 				D225F05526D6D2430093E50A /* AppDelegate.swift in Sources */,
 				D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */,
 				D225F08726D6D60B0093E50A /* CodeView.swift in Sources */,
 				D225F09226D6DCF50093E50A /* ApplicationFactory.swift in Sources */,
 				D225F09726D6DFBA0093E50A /* SearchListViewController.swift in Sources */,
+				D225F0B426D6FC2A0093E50A /* SearchMovieRequest.swift in Sources */,
+				D225F0B026D6F2DA0093E50A /* Dictionary+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

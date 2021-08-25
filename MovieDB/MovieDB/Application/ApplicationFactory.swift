@@ -8,7 +8,9 @@
 import Foundation
 
 /// Class that stores all dependencies used by the app.
-fileprivate final class ApplicationDependencies { }
+fileprivate final class ApplicationDependencies {
+    let apiClient = ApiClient()
+}
 
 /// Factory class that creates view controllers and injects them with proper dependencies.
 final class ApplicationFactory {
@@ -18,7 +20,7 @@ final class ApplicationFactory {
 extension ApplicationFactory {
     func makeSearchListViewController() -> SearchListViewController {
         SearchListViewController(
-            viewModel: SearchListViewModel()
+            viewModel: SearchListViewModel(apiClient: dependencies.apiClient)
         )
     }
 }
