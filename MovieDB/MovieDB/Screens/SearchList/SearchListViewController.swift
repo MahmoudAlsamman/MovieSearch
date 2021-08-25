@@ -21,5 +21,10 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
     ) {
         self.viewModel = viewModel
         super.init(customView: customView ?? SearchListViewView())
+        setupCallbacks()
+    }
+    
+    private func setupCallbacks() {
+        
     }
 }
