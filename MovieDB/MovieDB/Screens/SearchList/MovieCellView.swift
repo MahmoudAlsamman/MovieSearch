@@ -8,5 +8,6 @@
 import UIKit
 
 final class MovieCellView: UITableViewCell {
+    /// Cell Identifier.
     static let id = "MovieCellView"
 }

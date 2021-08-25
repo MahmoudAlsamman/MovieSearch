@@ -12,6 +12,7 @@ final class SearchListViewView: CodeView {
     // MARK: - Public points of contact
     
     var inputChanged: ((String) -> Void)?
+    var onRowSelection: ((_ index: Int) -> Void)?
     
     // MARK: - View Definitions
     
@@ -22,6 +23,7 @@ final class SearchListViewView: CodeView {
         tb.rowHeight = 70
         tb.backgroundColor = .clear
         tb.showsVerticalScrollIndicator = false
+        tb.delegate = self
         return tb
     }()
     
@@ -42,8 +44,9 @@ final class SearchListViewView: CodeView {
         searchBar.delegate = self
     }
 }
-
+// MARK: - View Hierarchy
 extension SearchListViewView: ViewSetupable {
+    
     func setupViewHierarchy() {
         addSubviews(searchBar, tableView)
     }
@@ -66,6 +69,13 @@ extension SearchListViewView: ViewSetupable {
     
     func setupProperties() {
         backgroundColor = .white
+    }
+}
+
+extension SearchListViewView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        onRowSelection?(indexPath.row)
     }
 }
 
