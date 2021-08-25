@@ -12,6 +12,9 @@
 		D225F06126D6D2430093E50A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D225F05F26D6D2430093E50A /* LaunchScreen.storyboard */; };
 		D225F06C26D6D2430093E50A /* MovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F06B26D6D2430093E50A /* MovieDBTests.swift */; };
 		D225F07726D6D2440093E50A /* MovieDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F07626D6D2440093E50A /* MovieDBUITests.swift */; };
+		D225F08726D6D60B0093E50A /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F08626D6D60B0093E50A /* CodeView.swift */; };
+		D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F08826D6D61D0093E50A /* CodeViewController.swift */; };
+		D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F08A26D6D6A90093E50A /* ViewSetupable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		D225F07226D6D2440093E50A /* MovieDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D225F07626D6D2440093E50A /* MovieDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBUITests.swift; sourceTree = "<group>"; };
 		D225F07826D6D2440093E50A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D225F08626D6D60B0093E50A /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		D225F08826D6D61D0093E50A /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
+		D225F08A26D6D6A90093E50A /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 		D225F05326D6D2430093E50A /* MovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				D225F08426D6D5EE0093E50A /* Shared */,
 				D225F05426D6D2430093E50A /* AppDelegate.swift */,
 				D225F05A26D6D2430093E50A /* Assets.xcassets */,
 				D225F05F26D6D2430093E50A /* LaunchScreen.storyboard */,
@@ -117,6 +124,24 @@
 				D225F07826D6D2440093E50A /* Info.plist */,
 			);
 			path = MovieDBUITests;
+			sourceTree = "<group>";
+		};
+		D225F08426D6D5EE0093E50A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D225F08526D6D5F50093E50A /* Base Classes */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D225F08526D6D5F50093E50A /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D225F08626D6D60B0093E50A /* CodeView.swift */,
+				D225F08826D6D61D0093E50A /* CodeViewController.swift */,
+				D225F08A26D6D6A90093E50A /* ViewSetupable.swift */,
+			);
+			path = "Base Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */,
 				D225F05526D6D2430093E50A /* AppDelegate.swift in Sources */,
+				D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */,
+				D225F08726D6D60B0093E50A /* CodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
