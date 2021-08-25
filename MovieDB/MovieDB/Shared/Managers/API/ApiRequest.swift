@@ -36,6 +36,8 @@ extension APIRequest {
     var basePath: String {
         "https://api.themoviedb.org/3"
     }
+    
+    var fullPath: String { basePath + path }
 
     var queryItems: [URLQueryItem]? { nil }
 
@@ -47,7 +49,6 @@ extension APIRequest {
         return """
             HTTP method: \(method.rawValue),\n
             Path: \(fullPath),\n
-            Default HTTP headers: \(defaultHeaders) (extra headers excluded),\n
             Query items: \(String(describing: queryItems)),\n
             JSON body: \(body)\n
         """
@@ -59,18 +60,4 @@ extension APIRequest {
         components.queryItems = queryItems
         return components.url(relativeTo: baseURL)!
     }
-}
-
-private extension APIRequest {
-
-    var fullPath: String { basePath + path }
-
-    var defaultHeaders: [String: String] {
-        [
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        ]
-    }
-
- 
 }

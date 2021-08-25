@@ -14,10 +14,10 @@ final class SearchListViewModel {
     init(apiClient: ApiClient) {
         self.apiClient = apiClient
         
-        apiClient.perform(request: SearchMovieRequest(apiKey: "73dc9a7cadd2b6d76b607a7f3fed304d", query: "Titatic")) { result in
+        apiClient.perform(request: SearchMovieRequest(apiKey: "73dc9a7cadd2b6d76b607a7f3fed304d", query: "love")) { result in
             switch result {
             case .success(let response):
-                print(response)
+                print(response.results)
             case .failure(let error):
                 print(error)
             }

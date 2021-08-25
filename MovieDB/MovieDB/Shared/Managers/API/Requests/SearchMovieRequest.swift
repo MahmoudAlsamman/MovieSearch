@@ -31,5 +31,9 @@ struct SearchMovieRequest: APIRequest {
 }
 
 struct SearchMovieResponse: APIResponse {
-    
+    let results: [Results]
+}
+
+struct Results : Codable {
+    let adult : Bool?
 }
