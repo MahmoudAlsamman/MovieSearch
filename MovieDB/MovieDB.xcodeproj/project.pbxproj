@@ -16,6 +16,9 @@
 		D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F08826D6D61D0093E50A /* CodeViewController.swift */; };
 		D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F08A26D6D6A90093E50A /* ViewSetupable.swift */; };
 		D225F09226D6DCF50093E50A /* ApplicationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09126D6DCF50093E50A /* ApplicationFactory.swift */; };
+		D225F09526D6DFAF0093E50A /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09426D6DFAF0093E50A /* SearchListView.swift */; };
+		D225F09726D6DFBA0093E50A /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09626D6DFBA0093E50A /* SearchListViewController.swift */; };
+		D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225F09826D6DFC60093E50A /* SearchListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		D225F08826D6D61D0093E50A /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		D225F08A26D6D6A90093E50A /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 		D225F09126D6DCF50093E50A /* ApplicationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFactory.swift; sourceTree = "<group>"; };
+		D225F09426D6DFAF0093E50A /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		D225F09626D6DFBA0093E50A /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		D225F09826D6DFC60093E50A /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,7 @@
 		D225F08E26D6D97B0093E50A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D225F09326D6DF800093E50A /* SearchList */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -185,6 +192,16 @@
 				D225F05F26D6D2430093E50A /* LaunchScreen.storyboard */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		D225F09326D6DF800093E50A /* SearchList */ = {
+			isa = PBXGroup;
+			children = (
+				D225F09426D6DFAF0093E50A /* SearchListView.swift */,
+				D225F09626D6DFBA0093E50A /* SearchListViewController.swift */,
+				D225F09826D6DFC60093E50A /* SearchListViewModel.swift */,
+			);
+			path = SearchList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,11 +333,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D225F09526D6DFAF0093E50A /* SearchListView.swift in Sources */,
 				D225F08926D6D61D0093E50A /* CodeViewController.swift in Sources */,
+				D225F09926D6DFC60093E50A /* SearchListViewModel.swift in Sources */,
 				D225F05526D6D2430093E50A /* AppDelegate.swift in Sources */,
 				D225F08B26D6D6A90093E50A /* ViewSetupable.swift in Sources */,
 				D225F08726D6D60B0093E50A /* CodeView.swift in Sources */,
 				D225F09226D6DCF50093E50A /* ApplicationFactory.swift in Sources */,
+				D225F09726D6DFBA0093E50A /* SearchListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
