@@ -9,6 +9,12 @@ import UIKit
 
 final class SearchListViewView: CodeView {
     
+    // MARK: - Public points of contact
+    
+    var inputChanged: ((String) -> Void)?
+    
+    // MARK: - View Definitions
+    
     private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
@@ -19,20 +25,56 @@ final class SearchListViewView: CodeView {
         return tb
     }()
     
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Something here"
+        searchBar.sizeToFit()
+        searchBar.searchBarStyle = .prominent
+        searchBar.enablesReturnKeyAutomatically = false
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
+    }()
     
+    // MARK: - LifeCycle
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = .white
+        searchBar.delegate = self
     }
 }
 
 extension SearchListViewView: ViewSetupable {
     func setupViewHierarchy() {
-        
+        addSubviews(searchBar, tableView)
     }
     
     func setupConstraints() {
-        
+        NSLayoutConstraint.activate(
+            [
+                // SearchBar constraints.
+                searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+                searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+                // TableView constaints.
+                tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+                tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ]
+        )
+    }
+    
+    func setupProperties() {
+        backgroundColor = .white
+    }
+}
+
+// MARK: - SearchBar Delegate
+extension SearchListViewView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        inputChanged?(searchText)
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
