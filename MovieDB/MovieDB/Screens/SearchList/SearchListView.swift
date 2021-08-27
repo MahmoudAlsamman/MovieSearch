@@ -11,16 +11,38 @@ final class SearchListViewView: CodeView {
     
     // MARK: - Public points of contact
     
+    /// Callback on keyboard input update.
     var inputChanged: ((String) -> Void)?
+    
+    /// Callback on row selection in tableview.
     var onRowSelection: ((_ index: Int) -> Void)?
+    
+    /// Sets tableview datasource.
+    func setTableViewDataSource(to dataSource: UITableViewDataSource?) {
+        tableView.dataSource = dataSource
+    }
+    
+    /// Reloads tableview data.
+    func reloadData() {
+        tableView.reloadData()
+    }
     
     // MARK: - View Definitions
     
-    private lazy var tableView: UITableView = {
+    let emptyListImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "projector")
+        imageView.contentMode = .center
+        imageView.backgroundColor = .systemGray6
+        return imageView
+    }()
+    
+     private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.register(MovieCellView.self, forCellReuseIdentifier: MovieCellView.id)
-        tb.rowHeight = 70
+        tb.rowHeight = 200
         tb.backgroundColor = .clear
         tb.showsVerticalScrollIndicator = false
         tb.delegate = self
@@ -29,26 +51,20 @@ final class SearchListViewView: CodeView {
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Something here"
+        searchBar.placeholder = "Type to search..."
         searchBar.sizeToFit()
-        searchBar.searchBarStyle = .prominent
+        searchBar.searchBarStyle = .minimal
         searchBar.enablesReturnKeyAutomatically = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
-    
-    // MARK: - LifeCycle
-    
-    init() {
-        super.init(frame: .zero)
-        searchBar.delegate = self
-    }
 }
 // MARK: - View Hierarchy
 extension SearchListViewView: ViewSetupable {
     
     func setupViewHierarchy() {
         addSubviews(searchBar, tableView)
+        addSubview(emptyListImageView)
     }
     
     func setupConstraints() {
@@ -62,13 +78,20 @@ extension SearchListViewView: ViewSetupable {
                 tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
                 tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+                tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                // EmptyList ImageView constaints.
+                emptyListImageView.topAnchor.constraint(equalTo: tableView.topAnchor),
+                emptyListImageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
+                emptyListImageView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
+                emptyListImageView.bottomAnchor.constraint(equalTo: tableView.bottomAnchor)
             ]
         )
     }
     
     func setupProperties() {
-        backgroundColor = .white
+        backgroundColor = .systemGray6
+        searchBar.delegate = self
+        searchBar.becomeFirstResponder()
     }
 }
 

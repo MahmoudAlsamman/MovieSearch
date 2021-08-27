@@ -40,19 +40,6 @@ extension APIRequest {
     var fullPath: String { basePath + path }
 
     var queryItems: [URLQueryItem]? { nil }
-
-    public var debugDescription: String {
-        let body: String = {
-            guard let bodyData = try? JSONEncoder().encode(self) else { return "no body" }
-            return String(data: bodyData, encoding: .utf8) ?? ""
-        }()
-        return """
-            HTTP method: \(method.rawValue),\n
-            Path: \(fullPath),\n
-            Query items: \(String(describing: queryItems)),\n
-            JSON body: \(body)\n
-        """
-    }
     
     func buildURL() -> URL {
         let baseURL = URL(string: fullPath)!

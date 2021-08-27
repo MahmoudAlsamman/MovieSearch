@@ -8,19 +8,26 @@
 import Foundation
 
 final class SearchListViewModel {
-        
-    let apiClient: ApiClient
     
-    init(apiClient: ApiClient) {
+    /// ApiClient.
+    private let apiClient: SearchMoviesService
+    /// List of movies.
+    var movies: [Movie] = []
+    
+    init(apiClient: SearchMoviesService) {
         self.apiClient = apiClient
-        
-        apiClient.perform(request: SearchMovieRequest(apiKey: "73dc9a7cadd2b6d76b607a7f3fed304d", query: "love")) { result in
-            switch result {
-            case .success(let response):
-                print(response.results)
-            case .failure(let error):
-                print(error)
-            }
-        }
+    }
+    
+    /// Makes a request to backend and returns list of movies found containing sesrch keyword.
+    /// - Parameters:
+    ///   - keyWord: Search keyword.
+    ///   - completion:
+    ///     - Success: List of Movies
+    ///     - Failure: Error type
+    func searchForMovies(
+        with keyWord: String,
+        completion: @escaping (Result<[Movie], APIClientError>) -> Void
+    ) {
+        apiClient.searchForMovies(with: keyWord, completion: completion)
     }
 }

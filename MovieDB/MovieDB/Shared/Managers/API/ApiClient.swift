@@ -12,12 +12,15 @@ final class ApiClient {
     // MARK: - Properties
 
     private let urlSession: URLSession
+    private (set) var apiKey: String = "73dc9a7cadd2b6d76b607a7f3fed304d"
 
     /// Initializes an instance.
     ///
     /// - Parameters:
     ///     - urlSession: URL session as a main interface for performing requests.
-    init(urlSession: URLSession = .shared) {
+    init(
+        urlSession: URLSession = .shared
+    ) {
         self.urlSession = urlSession
     }
     
@@ -25,8 +28,10 @@ final class ApiClient {
     /// - Parameters:
     ///   - request: The request to be performed.
     ///   - completion: The completion closure containing result of an operation.
-    func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void)
-    where Request: APIRequest {
+    func perform<Request>(
+        request: Request,
+        completion: @escaping (Result<Request.Response, APIClientError>) -> Void
+    ) where Request: APIRequest {
         
         /// Build a request url.
         let url = request.buildURL()
