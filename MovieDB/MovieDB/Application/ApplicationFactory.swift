@@ -20,7 +20,10 @@ final class ApplicationFactory {
 extension ApplicationFactory {
     func makeSearchListViewController() -> SearchListViewController {
         SearchListViewController(
-            viewModel: SearchListViewModel(apiClient: dependencies.apiClient)
+            customView: SearchListViewView(),
+            viewModel: SearchListViewModel(
+                apiClient: dependencies.apiClient
+            )
         )
     }
 }

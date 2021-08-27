@@ -19,5 +19,3 @@ extension APIResponse {
         JSONDecoder()
     }
 }
-
-extension String: APIResponse {}
