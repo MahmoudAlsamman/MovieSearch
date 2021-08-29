@@ -63,9 +63,9 @@ final class ApiClient {
                 if AppScheme.logsEnabled { print("Error: \(APIClientError.noDataRetrieved)") }
                 return
             }
-            
             let jsonDecoder = Request.Response.decoder
             jsonDecoder.dateDecodingStrategy = .iso8601
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
                 let result = try jsonDecoder.decode(Request.Response.self, from: data)

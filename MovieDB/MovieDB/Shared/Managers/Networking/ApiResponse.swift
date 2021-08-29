@@ -8,16 +8,13 @@
 import Foundation
 
 public protocol APIResponse: Decodable {
-
+    
     /// A decoder to be used when decoding a response.
     static var decoder: JSONDecoder { get }
 }
 
 extension APIResponse {
     public static var decoder: JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .iso8601
-        return decoder
+        JSONDecoder()
     }
 }
