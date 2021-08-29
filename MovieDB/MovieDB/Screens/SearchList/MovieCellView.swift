@@ -33,6 +33,7 @@ final class MovieCellView: CodeTableViewCell {
     func configureCell(with movie: Movie) {
         movieTitleLabel.text = movie.title
         movieOverviewLabel.text = movie.overview
+        releaseDateLabel.text = movie.formattedReleaseDate()
         isWatchedButton.setTitle(movie.isWatched ? "Watched" : "Not Watched", for: .normal)
         isWatchedButton.backgroundColor = movie.isWatched ? .systemGreen: .systemRed
         moviePosterImage.sd_setImage(
@@ -76,16 +77,16 @@ final class MovieCellView: CodeTableViewCell {
                 isWatchedButton.heightAnchor.constraint(equalToConstant: Constatnts.buttonHeight),
                 // MovieTitle.
                 movieTitleLabel.topAnchor.constraint(equalTo: moviePosterImage.topAnchor),
-                movieTitleLabel.leadingAnchor.constraint(equalTo: moviePosterImage.trailingAnchor, constant: Constatnts.horizontalPadding),
+                movieTitleLabel.leadingAnchor.constraint(equalTo: moviePosterImage.trailingAnchor),
                 movieTitleLabel.trailingAnchor.constraint(equalTo: isWatchedButton.leadingAnchor, constant: -Constatnts.horizontalPadding),
                 // ReleaseDate.
                 releaseDateLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: Constatnts.horizontalPadding),
-                releaseDateLabel.leadingAnchor.constraint(equalTo: moviePosterImage.trailingAnchor, constant: Constatnts.horizontalPadding),
+                releaseDateLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor),
                 releaseDateLabel.trailingAnchor.constraint(equalTo: isWatchedButton.leadingAnchor, constant: -Constatnts.horizontalPadding),
                 // MovieOverview.
-                movieOverviewLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: Constatnts.horizontalPadding),
+                movieOverviewLabel.topAnchor.constraint(equalTo: isWatchedButton.bottomAnchor, constant: Constatnts.horizontalPadding),
                 movieOverviewLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor),
-                movieOverviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                movieOverviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constatnts.edgePadding),
                 movieOverviewLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constatnts.edgePadding)
             ]
         )
@@ -98,7 +99,7 @@ final class MovieCellView: CodeTableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.adjustsFontForContentSizeCategory = true
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.textColor = .label
         return label
     }()
@@ -110,21 +111,17 @@ final class MovieCellView: CodeTableViewCell {
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         label.textColor = .secondaryLabel
-        label.text = "Nov 30, 1982" // Todo: - Set release date
         return label
     }()
     
-    private let movieOverviewLabel: UITextView = {
-        let label = UITextView()
+    private let movieOverviewLabel: UILabel = {
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .caption2)
         label.adjustsFontForContentSizeCategory = true
-        label.textAlignment = .left
         label.textColor = .secondaryLabel
         label.backgroundColor = .clear
-        label.isEditable = false
-        label.isSelectable = false
-        label.showsVerticalScrollIndicator = false
+        label.numberOfLines = 0
         return label
     }()
     

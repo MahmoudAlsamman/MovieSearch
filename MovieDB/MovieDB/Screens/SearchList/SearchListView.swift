@@ -112,3 +112,4 @@ extension SearchListViewView: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+

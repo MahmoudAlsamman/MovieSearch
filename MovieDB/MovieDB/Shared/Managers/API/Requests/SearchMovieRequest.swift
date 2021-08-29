@@ -12,6 +12,7 @@ struct SearchMovieRequest: APIRequest {
     typealias Response = SearchMovieResponse
 
     let apiKey: String
+    
     let query: String
     
     var method: APIRequestMethod {
