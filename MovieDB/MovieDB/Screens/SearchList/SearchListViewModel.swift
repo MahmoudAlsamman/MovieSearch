@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class SearchListViewModel {
     
@@ -29,5 +30,15 @@ final class SearchListViewModel {
         completion: @escaping (Result<[Movie], APIClientError>) -> Void
     ) {
         apiClient.searchForMovies(with: keyWord, completion: completion)
+    }
+
+    /// Opens selected movie in Safari.
+    /// - Parameter index: Selected movie index.
+    func showMoreDetailsForMovie(at index: Int) {
+        let movieID = movies[index].id
+        guard let url = URL(string: "https://www.themoviedb.org/movie/\(movieID)") else {
+            return
+        }
+        UIApplication.shared.open(url)
     }
 }

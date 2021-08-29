@@ -40,9 +40,13 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
                     self?.customView.reloadData()
                     self?.customView.emptyListImageView.isHidden = true
                 case .failure(let error):
-                    print(error) // Todo: - Handle errors
+                    print(error) // TODO: - Handle errors
                 }
             }
+        }
+
+        customView.onRowSelection = { [weak self] index in
+            self?.viewModel.showMoreDetailsForMovie(at: index)
         }
     }
 }

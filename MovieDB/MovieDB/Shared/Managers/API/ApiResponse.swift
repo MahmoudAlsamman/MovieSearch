@@ -14,8 +14,10 @@ public protocol APIResponse: Decodable {
 }
 
 extension APIResponse {
-
     public static var decoder: JSONDecoder {
-        JSONDecoder()
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
     }
 }
