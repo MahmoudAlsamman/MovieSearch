@@ -8,7 +8,6 @@
 import Foundation
 
 enum AppScheme {
-    
     case debug, release
     
     static var current: AppScheme {
