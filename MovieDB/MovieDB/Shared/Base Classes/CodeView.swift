@@ -10,25 +10,14 @@ import UIKit
 /// Base class for UIView to subclasses to remove boilerplate from views.
 class CodeView: UIView {
     
-    // MARK: - Properties
-    
-    private var isLayedout: Bool = false
-    
     // MARK: - LifeCycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        guard let setupableView = self as? ViewSetupable else { return }
+        setupableView.setupView()
     }
    
     @available(*, unavailable) required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        guard !isLayedout else { return }
-        guard let setupableView = self as? ViewSetupable else { return }
-        setupableView.setupView()
-        isLayedout = true
     }
 }

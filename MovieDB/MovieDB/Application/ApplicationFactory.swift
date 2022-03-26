@@ -5,8 +5,6 @@
 //  Created by Mahmoud Alsamman on 25/08/2021.
 //
 
-import Foundation
-
 /// Class that stores all dependencies used by the app.
 fileprivate final class ApplicationDependencies {
     let apiClient = ApiClient()

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class SearchListViewController: CodeViewController<SearchListViewView> {
     
     private let viewModel: SearchListViewModel
+    private var disposeBag = Set<AnyCancellable>()
     
     /// Initializes view controller.
     /// - Parameters:
@@ -21,51 +23,58 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
     ) {
         self.viewModel = viewModel
         super.init(customView: customView ?? SearchListViewView())
-        setupCallbacks()
+        setupBindings()
         self.customView.setTableViewDataSource(to: self)
     }
     
-    private func setupCallbacks() {
+    private func setupBindings() {
         // On keyboard input update.
-        customView.inputChanged = { [weak self] keyword in
-            if keyword.isEmpty {
-                self?.viewModel.movies.removeAll()
-                self?.customView.reloadData()
-                self?.customView.emptyListImageView.isHidden = false
-            }
-            self?.viewModel.searchForMovies(with: keyword) { result in
-                switch result {
-                case .success(let movies):
-                    self?.viewModel.movies = movies
-                    self?.customView.reloadData()
-                    self?.customView.emptyListImageView.isHidden = true
-                case .failure(_):
-                    break // TODO: - Handle errors
+        customView.inputChangedSubject
+            .sink { [weak self] keyword in
+                guard let self = self, !keyword.isEmpty else {
+                    self?.clearTableView()
+                    return
+                }
+                
+                self.viewModel.searchForMovies(with: keyword) { result in
+                    switch result {
+                    case .success(let movies):
+                        self.viewModel.movies = movies
+                        self.customView.reloadData()
+                        self.customView.emptyListImageView.isHidden = true
+                    case .failure(_):
+                        break // TODO: - Handle errors
+                    }
                 }
             }
-        }
+            .store(in: &disposeBag)
         // On row selection.
-        customView.onRowSelection = { [weak self] index in
-            self?.viewModel.showMoreDetailsForMovie(at: index)
-        }
+        customView.onRowSelectionSubject
+            .sink { [weak self] index in
+                self?.viewModel.showMoreDetailsForMovie(at: index)
+            }
+            .store(in: &disposeBag)
+    }
+    
+    private func clearTableView() {
+        viewModel.movies.removeAll()
+        customView.reloadData()
+        customView.emptyListImageView.isHidden = false
     }
 }
 
 //MARK: - TableViewDataSource
 extension SearchListViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieCellView.id, for: indexPath) as! MovieCellView
-        cell.configureCell(with: viewModel.movies[indexPath.item])
-        cell.onIsWatchedTap = { [weak self] in
-            self?.viewModel.movies[indexPath.item].isWatched.toggle()
-            tableView.reloadData()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCellView.identifier, for: indexPath) as? MovieCellView else {
+            return UITableViewCell()
         }
+        
+        cell.configureCell(with: viewModel.movies[indexPath.item])
         return cell
     }
 }
