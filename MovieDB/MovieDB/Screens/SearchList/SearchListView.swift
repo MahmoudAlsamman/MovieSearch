@@ -19,10 +19,10 @@ final class SearchListViewView: CodeView {
     
     // MARK: - Public points of contact
     /// Subject that broadcasts  on keyboard input update.
-    var inputChangedSubject = PassthroughSubject<String, Never>()
+    private(set) var onInputChangeSubject = PassthroughSubject<String, Never>()
     
     /// Subject that broadcasts  on row selection in tableview.
-    var onRowSelectionSubject = PassthroughSubject<Int, Never>()
+    private(set) var onRowSelectionSubject = PassthroughSubject<Int, Never>()
     
     /// Sets tableview datasource.
     func setTableViewDataSource(to dataSource: UITableViewDataSource?) {
@@ -76,16 +76,16 @@ extension SearchListViewView: ViewSetupable {
     func setupConstraints() {
         NSLayoutConstraint.activate(
             [
-                // SearchBar constraints.
+                // SearchBar
                 searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
                 searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-                // TableView constaints.
+                // TableView
                 tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
                 tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                // EmptyList ImageView constaints.
+                // EmptyList ImageView
                 emptyListImageView.topAnchor.constraint(equalTo: tableView.topAnchor),
                 emptyListImageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
                 emptyListImageView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
@@ -117,7 +117,7 @@ extension SearchListViewView: UITableViewDelegate {
 // MARK: - SearchBar Delegate
 extension SearchListViewView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        inputChangedSubject.send(searchText)
+        onInputChangeSubject.send(searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

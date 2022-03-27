@@ -29,7 +29,7 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
     
     private func setupBindings() {
         // On keyboard input update.
-        customView.inputChangedSubject
+        customView.onInputChangeSubject
             .sink { [weak self] keyword in
                 guard let self = self, !keyword.isEmpty else {
                     self?.clearTableView()

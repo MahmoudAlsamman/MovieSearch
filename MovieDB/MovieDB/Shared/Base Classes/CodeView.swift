@@ -9,7 +9,6 @@ import UIKit
 
 /// Base class for UIView to subclasses to remove boilerplate from views.
 class CodeView: UIView {
-    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)

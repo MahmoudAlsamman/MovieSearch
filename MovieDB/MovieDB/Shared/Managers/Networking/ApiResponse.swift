@@ -8,7 +8,6 @@
 import Foundation
 
 public protocol APIResponse: Decodable {
-    
     /// A decoder to be used when decoding a response.
     static var decoder: JSONDecoder { get }
 }

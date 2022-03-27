@@ -16,14 +16,14 @@ struct Movie: Decodable {
 }
 
 extension Movie {
-    func buildPosterUrl() -> URL? {
+    var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }
         let basePath = "https://image.tmdb.org/t/p/original"
         let posterUrl = URL(string: basePath + posterPath)
         return posterUrl
     }
     
-    func formattedReleaseDate() -> String? {
+    var formattedReleaseDate: String? {
         let formatter = DateFormatter()
         // Date string format from backend.
         formatter.dateFormat = "yyyy-mm-dd"
