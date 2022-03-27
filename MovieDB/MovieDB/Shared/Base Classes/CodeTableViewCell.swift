@@ -8,22 +8,14 @@
 import UIKit
 
 class CodeTableViewCell: UITableViewCell {
-    
-    private var isLayedout: Bool = false
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        guard !isLayedout else { return }
-        setupLayout()
-        isLayedout = true
     }
     
     func setupLayout() {

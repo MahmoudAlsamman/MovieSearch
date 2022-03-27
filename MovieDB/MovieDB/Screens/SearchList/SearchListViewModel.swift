@@ -25,10 +25,7 @@ final class SearchListViewModel {
     ///   - completion:
     ///     - Success: List of Movies
     ///     - Failure: Error type
-    func searchForMovies(
-        with keyWord: String,
-        completion: @escaping (Result<[Movie], APIClientError>) -> Void
-    ) {
+    func searchForMovies(with keyWord: String,completion: @escaping (Result<[Movie], APIClientError>) -> Void) {
         apiClient.searchForMovies(with: keyWord, completion: completion)
     }
 

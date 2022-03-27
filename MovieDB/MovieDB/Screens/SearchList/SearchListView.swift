@@ -6,16 +6,23 @@
 //
 
 import UIKit
+import Combine
 
 final class SearchListViewView: CodeView {
     
+    // MARK: - Constants
+    enum Constants {
+        static let imagePlaceholder: String = "projector"
+        static let searchPlaceholder: String = "Type to search..."
+        static let rowHeight: CGFloat = 200.0
+    }
+    
     // MARK: - Public points of contact
+    /// Subject that broadcasts  on keyboard input update.
+    private(set) var onInputChangeSubject = PassthroughSubject<String, Never>()
     
-    /// Callback on keyboard input update.
-    var inputChanged: ((String) -> Void)?
-    
-    /// Callback on row selection in tableview.
-    var onRowSelection: ((_ index: Int) -> Void)?
+    /// Subject that broadcasts  on row selection in tableview.
+    private(set) var onRowSelectionSubject = PassthroughSubject<Int, Never>()
     
     /// Sets tableview datasource.
     func setTableViewDataSource(to dataSource: UITableViewDataSource?) {
@@ -28,30 +35,29 @@ final class SearchListViewView: CodeView {
     }
     
     // MARK: - View Definitions
-    
     let emptyListImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "projector")
+        imageView.image = UIImage(named: Constants.imagePlaceholder)
         imageView.contentMode = .center
         imageView.backgroundColor = .systemGray6
         return imageView
     }()
     
-     private lazy var tableView: UITableView = {
+    private let tableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
-        tb.register(MovieCellView.self, forCellReuseIdentifier: MovieCellView.id)
-        tb.rowHeight = 200
+        tb.register(MovieCellView.self, forCellReuseIdentifier: MovieCellView.identifier)
+        tb.rowHeight = Constants.rowHeight
+        tb.estimatedRowHeight = UITableView.automaticDimension
         tb.backgroundColor = .clear
         tb.showsVerticalScrollIndicator = false
-        tb.delegate = self
         return tb
     }()
     
-    private lazy var searchBar: UISearchBar = {
+    private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Type to search..."
+        searchBar.placeholder = Constants.searchPlaceholder
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .minimal
         searchBar.enablesReturnKeyAutomatically = false
@@ -70,16 +76,16 @@ extension SearchListViewView: ViewSetupable {
     func setupConstraints() {
         NSLayoutConstraint.activate(
             [
-                // SearchBar constraints.
+                // SearchBar
                 searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
                 searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-                // TableView constaints.
+                // TableView
                 tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
                 tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                // EmptyList ImageView constaints.
+                // EmptyList ImageView
                 emptyListImageView.topAnchor.constraint(equalTo: tableView.topAnchor),
                 emptyListImageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
                 emptyListImageView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
@@ -90,6 +96,7 @@ extension SearchListViewView: ViewSetupable {
     
     func setupProperties() {
         backgroundColor = .systemGray6
+        tableView.delegate = self
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
     }
@@ -99,15 +106,20 @@ extension SearchListViewView: ViewSetupable {
 extension SearchListViewView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        onRowSelection?(indexPath.row)
+        onRowSelectionSubject.send(indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
 // MARK: - SearchBar Delegate
 extension SearchListViewView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        inputChanged?(searchText)
+        onInputChangeSubject.send(searchText)
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }

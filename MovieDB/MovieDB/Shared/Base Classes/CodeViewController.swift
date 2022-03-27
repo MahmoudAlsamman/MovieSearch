@@ -10,11 +10,9 @@ import UIKit
 class CodeViewController<View: UIView>: UIViewController {
     
     // MARK: - Properties
-    
     let customView: View
     
     // MARK: - LifeCycle
-    
     /// Initializes view controller with given view.
     init(customView: View = View()) {
         self.customView = customView

@@ -10,7 +10,6 @@ import Foundation
 final class ApiClient {
 
     // MARK: - Properties
-
     private let urlSession: URLSession
     private (set) var apiKey: String = "73dc9a7cadd2b6d76b607a7f3fed304d"
 
@@ -63,6 +62,7 @@ final class ApiClient {
                 if AppScheme.logsEnabled { print("Error: \(APIClientError.noDataRetrieved)") }
                 return
             }
+            
             let jsonDecoder = Request.Response.decoder
             jsonDecoder.dateDecodingStrategy = .iso8601
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
