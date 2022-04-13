@@ -27,6 +27,10 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       setupView()
+    }
+    
+    private func setupView() {
         customView.tableView.delegate = self
         customView.searchBar.delegate = self
         customView.tableView.dataSource = self
@@ -45,14 +49,15 @@ final class SearchListViewController: CodeViewController<SearchListViewView> {
             return
         }
         
-        viewModel.searchForMovies(with: searchText) { result in
+        viewModel.searchForMovies(with: searchText) { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success(let movies):
+            case let .success(movies):
                 self.viewModel.movies = movies
                 self.customView.tableView.reloadData()
                 self.customView.emptyListImageView.isHidden = true
             case .failure(_):
-                break // TODO: - Handle errors
+                break // TODO: Handle errors
             }
         }
     }

@@ -7,13 +7,16 @@
 
 import Foundation
 
-public protocol APIResponse: Decodable {
+protocol APIResponse: Decodable {
     /// A decoder to be used when decoding a response.
     static var decoder: JSONDecoder { get }
 }
 
 extension APIResponse {
     public static var decoder: JSONDecoder {
-        JSONDecoder()
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
     }
 }

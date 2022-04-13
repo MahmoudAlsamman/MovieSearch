@@ -83,7 +83,7 @@ final class MovieCellView: CodeTableViewCell {
     func configureCell(with movie: Movie) {
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
-        releaseDateLabel.text = movie.formattedReleaseDate
+        releaseDateLabel.text =  movie.releaseDate?.formatted ?? ""
         posterImageView.sd_setImage(
             with: movie.posterURL,
             placeholderImage: Constatnts.moviewPlaceholderImage

@@ -33,7 +33,10 @@ final class ApiClient {
     ) where Request: APIRequest {
         
         /// Build a request url.
-        let url = request.buildURL()
+        guard let url = request.buildURL() else {
+            assertionFailure("Invalid URL.")
+            return
+        }
         
         let task = urlSession.dataTask(with: url) { data, response, error in
             
@@ -64,9 +67,6 @@ final class ApiClient {
             }
             
             let jsonDecoder = Request.Response.decoder
-            jsonDecoder.dateDecodingStrategy = .iso8601
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
             do {
                 let result = try jsonDecoder.decode(Request.Response.self, from: data)
                 finalResult = .success(result)
