@@ -25,7 +25,7 @@ final class SearchListViewModel {
     ///   - completion:
     ///     - Success: List of Movies
     ///     - Failure: Error type
-    func searchForMovies(with keyWord: String,completion: @escaping (Result<[Movie], APIClientError>) -> Void) {
+    func searchForMovies(with keyWord: String, completion: @escaping (Result<[Movie], APIClientError>) -> Void) {
         apiClient.searchForMovies(with: keyWord, completion: completion)
     }
 
@@ -34,6 +34,7 @@ final class SearchListViewModel {
     func showMoreDetailsForMovie(at index: Int) {
         let movieID = movies[index].id
         guard let url = URL(string: "https://www.themoviedb.org/movie/\(movieID)") else {
+            assertionFailure("Invalid URL.")
             return
         }
         UIApplication.shared.open(url)

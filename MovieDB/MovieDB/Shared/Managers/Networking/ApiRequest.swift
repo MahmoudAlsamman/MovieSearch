@@ -8,14 +8,14 @@
 import Foundation
 
 /// HTTP requets method.
-public enum APIRequestMethod: String {
+enum APIRequestMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
     case delete = "DELETE"
 }
 
-public protocol APIRequest: Encodable {
+protocol APIRequest: Encodable {
 
     /// The type of a response.
     associatedtype Response: APIResponse
@@ -28,7 +28,7 @@ public protocol APIRequest: Encodable {
     /// An array of query items for the URL in the order in which they appear in the original query string.
     var queryItems: [URLQueryItem]? { get }
 
-    func buildURL() -> URL
+    func buildURL() -> URL?
 }
 
 extension APIRequest {
@@ -41,10 +41,10 @@ extension APIRequest {
 
     var queryItems: [URLQueryItem]? { nil }
     
-    func buildURL() -> URL {
-        let baseURL = URL(string: fullPath)!
+    func buildURL() -> URL? {
+        let baseURL = URL(string: fullPath)
         var components = URLComponents()
         components.queryItems = queryItems
-        return components.url(relativeTo: baseURL)!
+        return components.url(relativeTo: baseURL)
     }
 }

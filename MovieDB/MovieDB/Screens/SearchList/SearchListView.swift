@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 final class SearchListViewView: CodeView {
     
@@ -51,7 +50,6 @@ final class SearchListViewView: CodeView {
 }
 // MARK: - View Hierarchy
 extension SearchListViewView: ViewSetupable {
-    
     func setupViewHierarchy() {
         addSubviews(searchBar, tableView)
         addSubview(emptyListImageView)

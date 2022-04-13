@@ -15,6 +15,7 @@ class ApiClientTests: XCTestCase {
     var sut: ApiClient!
 
     override func setUp() {
+        super.setUp()
         urlSessionMock = URLSessionMock()
         sut = ApiClient(urlSession: urlSessionMock)
     }
@@ -52,7 +53,7 @@ class ApiClientTests: XCTestCase {
         urlSessionMock.responseToSend = ResponseMock(statusCode: 200)
         urlSessionMock.dataToSend = "{\"wrongName\":\"test\"}".data(using: .utf8)
         let request = SampleRequest(testProperty1: "1", testProperty2: "2")
-        let completionExpectation = expectation(description: "should complete")
+        let completionExpectation = expectation(description: "Testing Async request.")
         sut.perform(request: request) { result in
             switch result {
             case let .failure(error):
